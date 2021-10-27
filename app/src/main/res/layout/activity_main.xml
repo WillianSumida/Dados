@@ -50,6 +50,6 @@
         android:layout_height="64dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/resultadoTv"/>
+        app:layout_constraintTop_toBottomOf="@id/resultadoIv"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

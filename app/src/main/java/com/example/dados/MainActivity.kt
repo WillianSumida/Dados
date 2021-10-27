@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 //NUMERO DE FACES < 6
-                if (configuracao?.numeroFaces < 6) {
+                if (configuracao?.numeroFaces <= 6) {
                     val nomeImagem: String = "dice_${resultado}"
                     activityMainBinding.resultadoIv.setImageResource(
                         resources.getIdentifier(nomeImagem, "mipmap", packageName)
@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 //NUMERO DE FACES < 6
-                if (configuracao?.numeroFaces!! < 6) {
+                if (configuracao?.numeroFaces!! <= 6) {
                     activityMainBinding.resultadoIv.visibility = View.VISIBLE
                     activityMainBinding.resultado2Iv.visibility = View.VISIBLE
                     val nomeImagem: String = "dice_${resultado}"
