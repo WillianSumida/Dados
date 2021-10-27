@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.dados.databinding.ActivityMainBinding
@@ -45,12 +46,57 @@ class MainActivity : AppCompatActivity() {
 
                     //******** EXERCICIO MODIFICACAO DA VIEW *******
 
+                    //1 DADO
+                    if(configuracao?.numeroDados == 1) {
+                        val resultado: Int = geradorRandomico.nextInt(1..configuracao?.numeroFaces!!)
+                        "A face sorteada foi $resultado".also {
+                            activityMainBinding.resultadoTv.text = it
+                        }
+
+                        //NUMERO DE FACES < 6
+                        if (configuracao?.numeroFaces < 6) {
+                            activityMainBinding.resultadoIv.visibility = View.VISIBLE
+                            val nomeImagem: String = "dice_${resultado}"
+                            activityMainBinding.resultadoIv.setImageResource(
+                                resources.getIdentifier(nomeImagem, "mipmap", packageName)
+                            )
+                            activityMainBinding.resultado2Iv.visibility = View.INVISIBLE
+                        }else{//NUMERO DE FACES > 6
+                            activityMainBinding.resultadoIv.visibility = View.INVISIBLE
+                            activityMainBinding.resultado2Iv.visibility = View.INVISIBLE
+                        }
+
+                    }else{//2 DADOS
+                        val resultado: Int = geradorRandomico.nextInt(1..configuracao?.numeroFaces!!)
+                        val resultado2: Int = geradorRandomico.nextInt(1..configuracao?.numeroFaces!!)
+
+                        "As faces sorteadas foram $resultado e $resultado2".also {
+                            activityMainBinding.resultadoTv.text = it
+                        }
+
+                        //NUMERO DE FACES < 6
+                        if (configuracao?.numeroFaces!! < 6) {
+                            activityMainBinding.resultadoIv.visibility = View.VISIBLE
+                            activityMainBinding.resultado2Iv.visibility = View.VISIBLE
+                            val nomeImagem: String = "dice_${resultado}"
+                            activityMainBinding.resultadoIv.setImageResource(
+                                resources.getIdentifier(nomeImagem, "mipmap", packageName)
+                            )
+                            val nomeImagem2: String = "dice_${resultado2}"
+                            activityMainBinding.resultado2Iv.setImageResource(
+                                resources.getIdentifier(nomeImagem2, "mipmap", packageName)
+                            )
+                        }else{//NUMERO DE FACES > 6
+                            activityMainBinding.resultadoIv.visibility = View.INVISIBLE
+                            activityMainBinding.resultado2Iv.visibility = View.INVISIBLE
+                        }
+                    }
+
+
 
                 }
             }
         }
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
